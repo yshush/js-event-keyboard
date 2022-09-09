@@ -9,22 +9,15 @@ export class Keyboard {
 
   #assignElement() {
     this.#containerEl = document.getElementById("container");
-    this.#switchEl = this.#containerEl.querySelector("switch");
-    this.#fontSelectEl = this.#containerEl.querySelector("font");
+    this.#switchEl = this.#containerEl.querySelector("#switch");
+    this.#fontSelectEl = this.#containerEl.querySelector("#font");
   }
 
   #addEvent() {
-    this.#switchEl.addEventListener("change", (e) => {
-      document.documentElement.setAttribute(
-        "theme",
-        e.target.checked ? "dark-mode" : ""
-      );
-      console.log(e.target.checked);
-    });
-    this.#fontSelectEl.addEventListener("change", (e) => {
-      document.body.style.fontFamily = e.target.value;
-    });
+    this.#switchEl.addEventListener("change", this.#onChangeTheme);
+    this.#fontSelectEl.addEventListener("change", this.#onChangeFont);
   }
+
   #onChangeTheme(e) {
     document.documentElement.setAttribute(
       "theme",
